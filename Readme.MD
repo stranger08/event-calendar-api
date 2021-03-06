@@ -1,4 +1,5 @@
-# Testing - all components are in docker compose
+# Testing
+All components are in docker compose, app listening on port 5000
 `docker-compose up -d --build`
 
 # Development
