@@ -79,6 +79,27 @@
 			"response": []
 		},
 		{
+			"name": "events(all)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/v1/events",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "events",
 			"request": {
 				"method": "PUT",
@@ -126,6 +147,107 @@
 						"v1",
 						"events",
 						"60439849df691d00320a8431"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "registrations",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Laura\",\n  \"surname\": \"Laura\",\n  \"email\": \"laura.laura@email.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/v1/events/604389359229620032fc822c/registrations",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"events",
+						"604389359229620032fc822c",
+						"registrations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "registrations all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/v1/events/604389359229620032fc822c/registrations",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"events",
+						"604389359229620032fc822c",
+						"registrations"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "registrations",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/v1/events/registrations/6043b4e4da6f506c0830848e",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"events",
+						"registrations",
+						"6043b4e4da6f506c0830848e"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "registrations",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/v1/events/registrations/6043b4e4da6f506c0830848e",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"events",
+						"registrations",
+						"6043b4e4da6f506c0830848e"
 					]
 				}
 			},

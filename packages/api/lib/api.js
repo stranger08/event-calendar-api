@@ -12,4 +12,9 @@ router.get('/events/:id', controllers.events._read)
 router.put('/events/:id', controllers.events._update)
 router.delete('/events/:id', controllers.events._delete)
 
+router.post('/events/:eventId/registrations', controllers.registrations._create)
+router.get('/events/:eventId/registrations', controllers.registrations._readAll)
+router.get('/events/registrations/:regId', controllers.registrations._read)
+router.delete('/events/registrations/:regId', controllers.registrations._delete)
+
 module.exports = router

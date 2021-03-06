@@ -22,7 +22,6 @@ paths:
       responses:
         200:
           description: Success
-
   /events:
     get:
       description: Retrive list of all scheduled events
@@ -138,6 +137,104 @@ paths:
           schema: {}
         500:
           description: Internal Server Error
+  /events/{id}/registrations:
+    get:
+      description: Retrive list of all registrations in the event
+      tags:
+        - Event Operations
+      parameters:
+        - name: eventId
+          in: path
+          required: true
+          description: event identifier
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Registration"
+          examples: {}
+        400:
+          description: Invalid Request, validate your request and try again
+        404:
+          description: Not Found
+          schema: {}
+        500:
+          description: Internal Server Error
+    post:
+      description: Register attendance to an event
+      tags:
+        - Event Operations
+      produces:
+        - application/json
+      parameters:
+        - name: eventId
+          in: path
+          required: true
+          description: event identifier
+        - name: registration
+          in: body
+          required: true
+          description: Attendant details
+          schema:
+            $ref: "#/definitions/Registration"
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: "#/definitions/CreateResponse"
+          examples: {}
+        400:
+          description: Invalid Request, validate your request and try again
+        404:
+          description: Not Found
+          schema: {}
+        500:
+          description: Internal Server Error
+  /events/registrations/{regId}:
+    get:
+      description: Retrieve details of event registration
+      tags:
+        - Event Operations
+      parameters:
+        - name: regId
+          in: path
+          required: true
+          description: registration identifier
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: "#/definitions/Registration"
+        400:
+          description: Invalid Request, validate your request and try again
+        404:
+          description: Not Found
+          schema: {}
+        500:
+          description: Internal Server Error
+    delete:
+      description: Cancel registration event
+      tags:
+        - Event Operations
+      parameters:
+        - name: regId
+          in: path
+          required: true
+          description: registration identifier
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: "#/definitions/Event"
+        400:
+          description: Invalid Request, validate your request and try again
+        404:
+          description: Not Found
+          schema: {}
+        500:
+          description: Internal Server Error
 definitions:
   Event:
     title: Event
@@ -174,6 +271,23 @@ definitions:
       - location
       - date
       - startTime
+  Registration:
+    title: Registration
+    description: JSON structure representing event attendant details
+    type: object
+    properties:
+      name:
+        description: Name
+        type: string
+        example: Tom
+      surname:
+        description: Surname
+        type: string
+        example: Tomson
+      email:
+        description: contact email address
+        type: string
+        examaple: tom.tomson@email.com
   CreateResponse:
     title: Create Operation Response
     description: JSON structure representing API response upon creating the resource
