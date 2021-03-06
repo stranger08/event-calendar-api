@@ -20,6 +20,13 @@ async function getEvent(id) {
     return await eventsCollection.findOne({_id:ObjectID(id)})
 }
 
+async function getAllEvents() {
+    if (!client) {
+        throw 'Database connection has not been initialized!'
+    }
+    return await eventsCollection.find({}).toArray()
+}
+
 async function createEvent(event) {
     return await eventsCollection.insertOne(event)
 }
@@ -37,6 +44,7 @@ module.exports = {
     init,
     createEvent,
     getEvent,
+    getAllEvents,
     deleteEvent,
     updateEvent,
 };

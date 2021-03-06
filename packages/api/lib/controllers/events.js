@@ -18,6 +18,15 @@ async function _read(req, res)  {
     }
 }
 
+async function _readAll(req, res){
+    try {
+        let events = await mongoDbService.getAllEvents()
+        res.status(200).json(events)
+    } catch(err) {
+        res.status(500).json("Internal Server Error")
+    }
+}
+
 async function _update(req, res)  {
     try {
         let result = await mongoDbService.updateEvent(req.params.id, req.body)
@@ -39,6 +48,7 @@ async function _delete(req, res)  {
 module.exports = {
     _create,
     _read,
+    _readAll,
     _update,
     _delete,
 }

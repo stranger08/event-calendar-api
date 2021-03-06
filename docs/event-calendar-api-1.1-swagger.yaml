@@ -24,6 +24,26 @@ paths:
           description: Success
 
   /events:
+    get:
+      description: Retrive list of all scheduled events
+      tags:
+        - Event Operations
+      responses:
+        200:
+          description: Success
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/Event"
+          examples: {}
+        400:
+          description: Invalid Request, validate your request and try again
+        404:
+          description: Not Found
+          schema: {}
+        500:
+          description: Internal Server Error
+      
     post:
       description: Allows the chatbot to call a generic function. The chatbot will provide the method name and optionally a list of input parameters
       summary: Create event
