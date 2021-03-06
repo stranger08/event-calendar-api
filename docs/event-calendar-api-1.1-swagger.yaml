@@ -1,0 +1,197 @@
+swagger: "2.0"
+info:
+  version: "1.1"
+  title: Event Calendar API
+  description: This service enables chatbots to perform action fulfillment for integrated journeys. The interface allows to implement generic functions which are immediately available to the chatbot and the conversation designers.
+host: localhost:5000
+basePath: /api/v1
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /health:
+    get:
+      tags:
+        - Service status check
+      description: Allows checking the health of the Event Calendar Microservice. Anything but HTTP 200 will indicate malfunctioning service.
+      summary: Microservice health check
+      operationId: HealthCheckGet
+      responses:
+        200:
+          description: Success
+
+  /events:
+    post:
+      description: Allows the chatbot to call a generic function. The chatbot will provide the method name and optionally a list of input parameters
+      summary: Create event
+      tags:
+        - Event Operations
+      produces:
+        - application/json
+      parameters:
+        - name: event
+          in: body
+          required: true
+          description: Event information
+          schema:
+            $ref: "#/definitions/Event"
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: "#/definitions/CreateResponse"
+          examples: {}
+        400:
+          description: Invalid Request, validate your request and try again
+        404:
+          description: Not Found
+          schema: {}
+        500:
+          description: Internal Server Error
+  /events/{id}:
+    get:
+      tags:
+        - Event Operations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: event identifier
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: "#/definitions/Event"
+        400:
+          description: Invalid Request, validate your request and try again
+        404:
+          description: Not Found
+          schema: {}
+        500:
+          description: Internal Server Error
+    put:
+      tags:
+        - Event Operations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: event identifier
+        - name: event
+          in: body
+          required: true
+          description: Updated event information
+          schema:
+            $ref: "#/definitions/Event"
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: "#/definitions/UpdateResponse"
+        400:
+          description: Invalid Request, validate your request and try again
+        404:
+          description: Not Found
+          schema: {}
+        500:
+          description: Internal Server Error
+    delete:
+      tags:
+        - Event Operations
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: event identifier
+      responses:
+        200:
+          description: Success
+          schema:
+            $ref: "#/definitions/DeleteResponse"
+        400:
+          description: Invalid Request, validate your request and try again
+        404:
+          description: Not Found
+          schema: {}
+        500:
+          description: Internal Server Error
+definitions:
+  Event:
+    title: Event
+    description: JSON structure representing scheduled event
+    type: object
+    properties:
+      name:
+        description: Title
+        type: string
+        example: Summerfest
+      description:
+        description: Explanatory text message
+        type: string
+        example: Celebrating summer
+      location:
+        description: Event's venue name or location detail
+        type: string
+        example: Dubingiai
+      date:
+        description: Scheduled event date
+        type: string
+        example: "2021-06-01"
+      startTime:
+        description: Event start time
+        type: string
+        example: "19:00"
+      guests:
+        description: Guests list attenting the event
+        type: array
+        example: ["SEL", "8 kambarys", "Ugnies valdovai"]
+    required:
+      - name
+      - description
+      - location
+      - date
+      - startTime
+  CreateResponse:
+    title: Create Operation Response
+    description: JSON structure representing API response upon creating the resource
+    type: object
+    properties:
+      id:
+        description: Identifier
+        type: string
+        example: 6043893a9229620032fc822f
+  UpdateResponse:
+    title: Update Operation Response
+    description: JSON structure representing API response upon updating the resource
+    type: object
+    properties:
+      n:
+        description: Number of resources participated in operation
+        type: integer
+        example: 1
+      nModified:
+        description: Number of resources updated
+        type: integer
+        example: 1
+      ok:
+        description: Operation status flag, 1 indicated success, 0 - operational failure
+        type: integer
+        example: 1
+  DeleteResponse:
+    title: Delete Operation Response
+    description: JSON structure representing API response upon deleting the resource
+    type: object
+    properties:
+      n:
+        description: Number of resources deleted
+        type: integer
+        example: 1
+      ok:
+        description: Operation status flag, 1 indicated success, 0 - operational failure
+        type: integer
+        example: 1
+
+

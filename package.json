@@ -1,0 +1,16 @@
+{
+  "name": "event-calendar-api",
+  "version": "1.0.0",
+  "description": "Web Service demonstration for event calendar",
+  "main": "index.js",
+  "author": "Sarunas Ramanauskas, Informatika, 3k, 2g",
+  "license": "MIT",
+  "scripts": {
+    "start": "lerna run start:local --stream",
+    "start:docker": "lerna run start:docker --stream"
+  },
+  "devDependencies": {
+    "lerna": "^3.22.1"
+  },
+  "dependencies": {}
+}

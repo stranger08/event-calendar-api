@@ -1,0 +1,32 @@
+version: '3'
+services:
+  api:
+    build: .
+    ports:
+      - "5000:5000"
+    networks:
+      - local
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    networks:
+      - local
+    volumes:
+      - mongo-data:/data/db
+  
+  mongo-express:
+    image: mongo-express
+    networks:
+      - local
+    restart: always
+    ports:
+      - "8081:8081"
+
+volumes:
+  mongo-data:
+
+networks:
+  local:

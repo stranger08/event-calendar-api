@@ -1,0 +1,28 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "description": "> TODO: description",
+  "author": "sarunas.ramanauskas <sarunas.ramanauskas@ibm.com>",
+  "homepage": "",
+  "license": "MIT",
+  "main": "lib/server.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "start:local": "node -r dotenv/config index.js dotenv_config_path=../../env/local.env",
+    "start:docker": "node -r dotenv/config index.js dotenv_config_path=../../env/docker.env",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "swagger-ui-express": "^4.1.6",
+    "yamljs": "^0.3.0"
+  }
+}
