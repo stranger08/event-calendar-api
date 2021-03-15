@@ -17,6 +17,7 @@
     "test": "echo \"Error: run tests from root\" && exit 1"
   },
   "dependencies": {
+    "ip": "^1.1.5",
     "mongodb": "^3.6.4"
   }
 }
