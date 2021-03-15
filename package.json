@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "lerna run start:local --stream",
-    "start:docker": "lerna run start:docker --stream"
+    "start:docker": "node -r dotenv/config ./packages/server/index.js dotenv_config_path=./env/docker.env"
   },
   "devDependencies": {
     "lerna": "^3.22.1"
