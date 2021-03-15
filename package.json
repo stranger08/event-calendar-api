@@ -6,15 +6,18 @@
   "author": "Sarunas Ramanauskas, Informatika, 3k, 2g",
   "license": "MIT",
   "scripts": {
-    "start": "lerna run start:local --stream",
+    "start": "node -r dotenv/config ./packages/server/index.js dotenv_config_path=./env/local.env",
     "start:docker": "node -r dotenv/config ./packages/server/index.js dotenv_config_path=./env/docker.env"
   },
   "devDependencies": {
     "lerna": "^3.22.1"
   },
-  "dependencies": {},
-  "private": true,
-  "workspaces": [
-    "packages/*"
-  ]
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "swagger-ui-express": "^4.1.6",
+    "yamljs": "^0.3.0",
+    "mongodb": "^3.6.4"
+  }
 }
