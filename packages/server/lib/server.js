@@ -6,7 +6,10 @@ const config = require('../../config')
 const YAML = require('yamljs')
 const swaggerUI = require('swagger-ui-express')
 const bodyParser = require('body-parser')
-const mongoDbService = require('../../services').mongoDbService
+const {
+    addressBookService,
+    mongoDbService
+} = require('../../services')
 
 const SWAGGER_PATH = '/../../../docs/event-calendar-api-1.1-swagger.yaml';
 
@@ -14,6 +17,7 @@ async function start() {
 
     const configuration = await config()
     await mongoDbService.init(configuration)
+    await addressBookService.init(configuration)
     
     const app = express()
     app.use(bodyParser.json())

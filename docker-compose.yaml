@@ -3,7 +3,7 @@ services:
   app:
     build: .
     ports:
-      - "5000:5000"
+      - '5000:5000'
     networks:
       - local
     depends_on:
@@ -13,7 +13,7 @@ services:
     image: mongo
     restart: always
     ports:
-      - "27017:27017"
+      - '27017:27017'
     networks:
       - local
     volumes:
@@ -25,10 +25,51 @@ services:
       - local
     restart: always
     ports:
-      - "8081:8081"
+      - '8081:8081'
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - local
+    ports: 
+      - '5432:5432'
+    volumes:
+      - addressbook-db:/var/lib/postgresql/data
+  
+  pgadmin:
+    image: dpage/pgadmin4
+    depends_on: 
+      - postgres
+    networks:
+      - local
+    ports:
+      - "53603:53603"
+      - "80:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    
+  addressbook:
+    build:
+      context: ../WebService
+    environment:
+      DB_SCHEMA: postgres
+      DB_USER: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: postgres
+    depends_on:
+      - postgres
+    networks:
+      - local
+    ports:
+      - '3000:3000'
 
 volumes:
   mongo-data:
+  addressbook-db:
 
 networks:
   local:
