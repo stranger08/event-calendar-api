@@ -8,7 +8,7 @@ Onwards, postgres data is persisted in docker volume. If there are any file perm
 
 # Development
 Using docker compose for downstream services
-`docker-compose up -d mongo mongo-express`
+`docker-compose up -d mongo mongo-express addressbook postgres pgadmin`
 Running application directly with node
 `yarn run start:local`
 
