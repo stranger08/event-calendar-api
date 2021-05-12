@@ -33,6 +33,36 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
+					"raw": "{\n    \"name\": \"Renginys\",\n    \"date\": \"2021-03-15\",\n    \"location\": \"Baltojo tilto sporto aikstele\",\n    \"guests\": [\n        \"Lietuvos vyru krepsinio rinktine\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://{{host}}:{{port}}/api/v1/events",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"api",
+						"v1",
+						"events"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "events Copy",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
 					"raw": "{\n    \"name\": \"Renginys\",\n    \"date\": \"2021-03-15\",\n    \"location\": \"Baltojo tilto sporto aikstele\",\n    \"guests\": [\n        \"Lietuvos vyru krepsinio rinktine\",\n        \"Pravalturo kolektyvas\"\n    ]\n}",
 					"options": {
 						"raw": {
@@ -59,10 +89,10 @@
 		{
 			"name": "events",
 			"request": {
-				"method": "GET",
+				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://{{host}}:{{port}}/api/v1/events/6043893a9229620032fc822f",
+					"raw": "http://{{host}}:{{port}}/api/v1/events/6051c5dc2b4ebc001d731ba9",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
@@ -72,7 +102,7 @@
 						"api",
 						"v1",
 						"events",
-						"6043893a9229620032fc822f"
+						"6051c5dc2b4ebc001d731ba9"
 					]
 				}
 			},
@@ -136,7 +166,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://{{host}}:{{port}}/api/v1/events/60439849df691d00320a8431",
+					"raw": "http://{{host}}:{{port}}/api/v1/events/6051c5dc2b4ebc001d731ba9",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
@@ -146,7 +176,7 @@
 						"api",
 						"v1",
 						"events",
-						"60439849df691d00320a8431"
+						"6051c5dc2b4ebc001d731ba9"
 					]
 				}
 			},
@@ -159,7 +189,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"name\": \"Laura\",\n  \"surname\": \"Laura\",\n  \"email\": \"laura.laura@email.com\"\n}",
+					"raw": "{\n    \"name\": \"Peter\",\n    \"surname\": \"Peterson\",\n    \"email\": \"peter.peterson@domain.net\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -167,7 +197,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://{{host}}:{{port}}/api/v1/events/604389359229620032fc822c/registrations",
+					"raw": "http://{{host}}:{{port}}/api/v1/events/6091a224252dc5001de43aba/registrations",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
@@ -177,7 +207,7 @@
 						"api",
 						"v1",
 						"events",
-						"604389359229620032fc822c",
+						"6091a224252dc5001de43aba",
 						"registrations"
 					]
 				}
@@ -190,7 +220,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{host}}:{{port}}/api/v1/events/604389359229620032fc822c/registrations",
+					"raw": "http://{{host}}:{{port}}/api/v1/events/6091a224252dc5001de43aba/registrations",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
@@ -200,7 +230,7 @@
 						"api",
 						"v1",
 						"events",
-						"604389359229620032fc822c",
+						"6091a224252dc5001de43aba",
 						"registrations"
 					]
 				}
@@ -213,7 +243,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://{{host}}:{{port}}/api/v1/events/registrations/6043b4e4da6f506c0830848e",
+					"raw": "http://{{host}}:{{port}}/api/v1/events/registrations/609adffecc5af5001c307dfb",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
@@ -224,7 +254,7 @@
 						"v1",
 						"events",
 						"registrations",
-						"6043b4e4da6f506c0830848e"
+						"609adffecc5af5001c307dfb"
 					]
 				}
 			},
@@ -236,7 +266,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://{{host}}:{{port}}/api/v1/events/registrations/6043b4e4da6f506c0830848e",
+					"raw": "http://{{host}}:{{port}}/api/v1/events/registrations/609ad7a7ac26e2001e454d97",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
@@ -247,7 +277,98 @@
 						"v1",
 						"events",
 						"registrations",
-						"6043b4e4da6f506c0830848e"
+						"609ad7a7ac26e2001e454d97"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Address get all",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:3000/persons/all",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"persons",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Address get one",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/persons/22",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"persons",
+						"22"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Address delete one",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/persons/11",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"persons",
+						"11"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Address create one",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstName\": \"Petras\",\n    \"lastName\": \"Petraitis\",\n    \"placeOfWork\": \"email@domain.com\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/persons",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"persons"
 					]
 				}
 			},
