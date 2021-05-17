@@ -7,9 +7,11 @@ async function init(config) {
 }
 
 async function getById(id) {
+
     const { body } = await got(`${serviceURL}/persons/${id}`, {
         responseType: 'text'
     })
+
     return JSON.parse(body)
 }
 
@@ -39,10 +41,31 @@ async function deleteOne(id) {
     return JSON.parse(body)
 }
 
+async function collectAttendeesList(registrations) {
+    let result = []
+    try {
+        for (registration of registrations) {
+            if (
+                registration.externalAttendeeDetailsId
+            ) {
+                let attendee = await getById(registration.externalAttendeeDetailsId)
+                result.push({
+                    event: registration.eventId,
+                    ...attendee
+                })
+            }
+        }
+    } catch (err) {
+        console.error("Error reaching to addressbook service!", err)
+    }
+    return result
+}
+
 module.exports = {
     init,
     getAll,
     getById,
     createOne,
     deleteOne,
+    collectAttendeesList,
 }

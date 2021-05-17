@@ -1,5 +1,5 @@
 const {
-    mongoDbService,
+    mongoDbService, addressBookService,
 } = require('../../../services')
 
 function resourceLocation(req, id) {
@@ -19,7 +19,7 @@ async function _create(req, res) {
 
 async function _read(req, res)  {
 
-    if (req.params.id.length != 24){
+    if (req.params.id.length != 24) {
         res.status(400).json({error: "Client requested malformed"})
         return
     }
@@ -27,7 +27,14 @@ async function _read(req, res)  {
     try {
         let event = await mongoDbService.getEvent(req.params.id)
         if (event) {
-            res.status(200).json(event)
+            let eventId = `${event._id}`
+            let registrations = await mongoDbService.getAllEventRegistrations(eventId)
+            let attendees = await addressBookService.collectAttendeesList(registrations)
+            console.log(attendees)
+            res.status(200).json({
+                ...event,
+                attendees: attendees ? attendees : []
+            })
         } else {
             res.status(404).json("404 Not Found")
         }

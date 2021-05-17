@@ -58,7 +58,8 @@ async function getEventRegistration(registrationId) {
 
 async function getAllEventRegistrations(eventId) {
     assertDatabaseConnection()
-    return await registrationsCollection.find({eventId}).toArray()
+    let res = await registrationsCollection.find({eventId}).toArray()
+    return res
 }
 
 async function deleteEventRegistration(registrationId) {

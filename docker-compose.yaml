@@ -37,7 +37,8 @@ services:
     ports: 
       - '5432:5432'
     volumes:
-      - addressbook-db:/var/lib/postgresql/data
+      - addressbook-data:/var/lib/postgresql/data
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
   
   pgadmin:
     image: dpage/pgadmin4
@@ -54,7 +55,7 @@ services:
     
   addressbook:
     build:
-      context: ../WebService
+      context: ./addressbook
     environment:
       DB_SCHEMA: postgres
       DB_USER: postgres
@@ -68,8 +69,8 @@ services:
       - '3000:3000'
 
 volumes:
+  addressbook-data:
   mongo-data:
-  addressbook-db:
 
 networks:
   local:
