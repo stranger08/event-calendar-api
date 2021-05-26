@@ -1,7 +1,7 @@
 'use strict'
 
 const express = require('express')
-const api = require('../../api')
+const { api } = require('../../api')
 const config = require('../../config')
 const YAML = require('yamljs')
 const swaggerUI = require('swagger-ui-express')
@@ -11,7 +11,7 @@ const {
     mongoDbService
 } = require('../../services')
 
-const SWAGGER_PATH = '/../../../docs/event-calendar-api-1.1-swagger.yaml';
+const SWAGGER_PATH = '/../../../docs/event-calendar-api-1.1-swagger.yaml'
 
 async function start() {
 

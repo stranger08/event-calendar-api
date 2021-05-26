@@ -1,1 +1,7 @@
-module.exports = require('./lib/api')
+const api = require('./lib/api')
+const soapAPI = require('./lib/events')
+
+module.exports = {
+    api,
+    soapAPI
+}

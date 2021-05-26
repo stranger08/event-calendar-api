@@ -1,5 +1,5 @@
-const mongoDbService = require('./lib/mongo-db');
-const addressBookService = require('./lib/address-book');
+const mongoDbService = require('./lib/mongo-db')
+const addressBookService = require('./lib/address-book')
 
 module.exports = {
     mongoDbService,

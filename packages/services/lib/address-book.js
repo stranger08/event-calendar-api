@@ -51,6 +51,7 @@ async function collectAttendeesList(registrations) {
                 let attendee = await getById(registration.externalAttendeeDetailsId)
                 result.push({
                     event: registration.eventId,
+                    regId: `${registration._id}`,
                     ...attendee
                 })
             }
