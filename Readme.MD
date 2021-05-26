@@ -7,4 +7,4 @@ startup
 SOAP UI project is provided in /test directory
 
 # API specs
-WSDL is in /wsdl directory
+http://localhost:5000/event-calendar-service?wsdl
