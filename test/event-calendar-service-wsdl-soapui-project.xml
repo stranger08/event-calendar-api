@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="f8bc4337-4753-40fb-9a3e-8c606eb81396" activeEnvironment="Default" name="event-calendar-service?wsdl" resourceRoot="" soapui-version="5.6.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="953f795c-9a43-4cea-9a62-ad30009af248" wsaVersion="NONE" name="EventCalendarBinding" type="wsdl" bindingName="{http://tempuri.org/}EventCalendarBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:5000/event-calendar-service?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:5000/event-calendar-service?wsdl"><con:part><con:url>http://localhost:5000/event-calendar-service?wsdl</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="idElement" type="s:string"/>
+      <s:element name="eventIdElement" type="s:string"/>
+      <s:element name="regId" type="s:string"/>
+      <s:element name="deleteRegId" type="s:string"/>
+      <s:element name="empty">
+        <s:complexType></s:complexType>
+      </s:element>
+      <s:complexType name="registration">
+        <s:sequence>
+          <s:element minOccurs="0" name="id" type="s:string"/>
+          <s:element minOccurs="0" name="eventId" type="s:string"/>
+          <s:element minOccurs="0" name="name" type="s:string"/>
+          <s:element minOccurs="0" name="surname" type="s:string"/>
+          <s:element minOccurs="0" name="email" type="s:string"/>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="registration" type="tns:registration"/>
+      <s:element name="registrations">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="unbounded" name="registration" type="tns:registration"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="event">
+        <s:sequence>
+          <s:element name="id" type="s:string"/>
+          <s:element minOccurs="1" name="name" type="s:string"/>
+          <s:element minOccurs="1" name="date" type="s:string"/>
+          <s:element minOccurs="1" name="location" type="s:string"/>
+          <s:element name="guests">
+            <s:complexType>
+              <s:sequence>
+                <s:element minOccurs="0" maxOccurs="unbounded" name="guest" type="s:string"/>
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+          <s:element name="attendees">
+            <s:complexType>
+              <s:sequence>
+                <s:element minOccurs="0" maxOccurs="unbounded" name="attendee" type="tns:registration"/>
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:element name="event" type="tns:event"/>
+      <s:element name="events">
+        <s:complexType>
+          <s:sequence>
+            <s:element maxOccurs="unbounded" name="event" type="tns:event"/>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="eventListRequest">
+    <wsdl:part name="empty" element="tns:empty"/>
+  </wsdl:message>
+  <wsdl:message name="eventListResponse">
+    <wsdl:part name="events" element="tns:events"/>
+  </wsdl:message>
+  <wsdl:message name="deleteEventRequest">
+    <wsdl:part name="id" element="tns:idElement"/>
+  </wsdl:message>
+  <wsdl:message name="deleteEventResponse">
+    <wsdl:part name="id" element="tns:idElement"/>
+  </wsdl:message>
+  <wsdl:message name="getEventRequest">
+    <wsdl:part name="id" element="tns:idElement"/>
+  </wsdl:message>
+  <wsdl:message name="getEventResponse">
+    <wsdl:part name="id" element="tns:event"/>
+  </wsdl:message>
+  <wsdl:message name="createEventRequest">
+    <wsdl:part name="event" element="tns:event"/>
+  </wsdl:message>
+  <wsdl:message name="createEventResponse">
+    <wsdl:part name="event" element="tns:idElement"/>
+  </wsdl:message>
+  <wsdl:message name="createEventRegistrationRequest">
+    <wsdl:part name="registration" element="tns:registration"/>
+  </wsdl:message>
+  <wsdl:message name="createEventRegistrationResponse">
+    <wsdl:part name="registration" element="tns:idElement"/>
+  </wsdl:message>
+  <wsdl:message name="getEventRegistrationsRequest">
+    <wsdl:part name="registration" element="tns:eventIdElement"/>
+  </wsdl:message>
+  <wsdl:message name="getEventRegistrationsResponse">
+    <wsdl:part name="registrations" element="tns:registrations"/>
+  </wsdl:message>
+  <wsdl:message name="getRegistrationRequest">
+    <wsdl:part name="registration" element="tns:regId"/>
+  </wsdl:message>
+  <wsdl:message name="getRegistrationResponse">
+    <wsdl:part name="registration" element="tns:registration"/>
+  </wsdl:message>
+  <wsdl:message name="deleteRegistrationRequest">
+    <wsdl:part name="registration" element="tns:deleteRegId"/>
+  </wsdl:message>
+  <wsdl:message name="deleteRegistrationResponse">
+    <wsdl:part name="registration" element="tns:idElement"/>
+  </wsdl:message>
+  <wsdl:portType name="EventCalendarPortType">
+    <wsdl:operation name="getEvents">
+      <wsdl:input message="tns:eventListRequest"/>
+      <wsdl:output message="tns:eventListResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getEventById">
+      <wsdl:input message="tns:getEventRequest"/>
+      <wsdl:output message="tns:getEventResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="deleteEvent">
+      <wsdl:input message="tns:deleteEventRequest"/>
+      <wsdl:output message="tns:deleteEventResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="createEvent">
+      <wsdl:input message="tns:createEventRequest"/>
+      <wsdl:output message="tns:createEventResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="createEventRegistration">
+      <wsdl:input message="tns:createEventRegistrationRequest"/>
+      <wsdl:output message="tns:createEventRegistrationResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getEventRegistrations">
+      <wsdl:input message="tns:getEventRegistrationsRequest"/>
+      <wsdl:output message="tns:getEventRegistrationsResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="getRegistration">
+      <wsdl:input message="tns:getRegistrationRequest"/>
+      <wsdl:output message="tns:getRegistrationResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="deleteRegistration">
+      <wsdl:input message="tns:deleteRegistrationRequest"/>
+      <wsdl:output message="tns:deleteRegistrationResponse"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="EventCalendarBinding" type="tns:EventCalendarPortType">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="getEvents">
+      <soap:operation soapAction="http://localhost:5000/getEvents"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createEvent">
+      <soap:operation soapAction="http://localhost:5000/createEvent"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEventById">
+      <soap:operation soapAction="http://localhost:5000/getEventById"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteEvent">
+      <soap:operation soapAction="http://localhost:5000/deleteEvent"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="createEventRegistration">
+      <soap:operation soapAction="http://localhost:5000/createEventRegistration"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getEventRegistrations">
+      <soap:operation soapAction="http://localhost:5000/getEventRegistrations"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getRegistration">
+      <soap:operation soapAction="http://localhost:5000/getRegistration"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="deleteRegistration">
+      <soap:operation soapAction="http://localhost:5000/deleteRegistration"/>
+      <wsdl:input>
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="EventCalendarService">
+    <wsdl:port name="EventCalendarPort" binding="tns:EventCalendarBinding">
+      <soap:address location="http://localhost:5000/event-calendar-service"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:5000/event-calendar-service</con:endpoint></con:endpoints><con:operation id="cc746c64-ae00-4064-8947-ed5a34e2d413" isOneWay="false" action="http://localhost:5000/createEvent" name="createEvent" bindingOperationName="createEvent" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d2d167e1-0cc5-44bb-a8ea-cde8736bf336" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:5000/event-calendar-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:event>
+         <tem:id>?</tem:id>
+         <tem:name>?</tem:name>
+         <tem:date>?</tem:date>
+         <tem:location>?</tem:location>
+         <tem:guests>
+            <!--Zero or more repetitions:-->
+            <tem:guest>?</tem:guest>
+         </tem:guests>
+         <tem:attendees>
+            <!--Zero or more repetitions:-->
+            <tem:attendee>
+               <!--Optional:-->
+               <tem:id>?</tem:id>
+               <!--Optional:-->
+               <tem:eventId>?</tem:eventId>
+               <!--Optional:-->
+               <tem:name>?</tem:name>
+               <!--Optional:-->
+               <tem:surname>?</tem:surname>
+               <!--Optional:-->
+               <tem:email>?</tem:email>
+            </tem:attendee>
+         </tem:attendees>
+      </tem:event>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://localhost:5000/createEvent"/></con:call></con:operation><con:operation id="55ff1566-c042-43cf-b3b9-8c22d57de879" isOneWay="false" action="http://localhost:5000/createEventRegistration" name="createEventRegistration" bindingOperationName="createEventRegistration" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="316becc4-8647-4c8e-b33c-e640e614cd23" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:5000/event-calendar-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:registration>
+         <!--Optional:-->
+         <tem:id>?</tem:id>
+         <!--Optional:-->
+         <tem:eventId>?</tem:eventId>
+         <!--Optional:-->
+         <tem:name>?</tem:name>
+         <!--Optional:-->
+         <tem:surname>?</tem:surname>
+         <!--Optional:-->
+         <tem:email>?</tem:email>
+      </tem:registration>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://localhost:5000/createEventRegistration"/></con:call></con:operation><con:operation id="e76e057c-b55b-4f96-ade7-2e3613f25287" isOneWay="false" action="http://localhost:5000/deleteEvent" name="deleteEvent" bindingOperationName="deleteEvent" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="4e3d32c7-be72-49fb-8a8e-ba17da5011db" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:5000/event-calendar-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:idElement>?</tem:idElement>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://localhost:5000/deleteEvent"/></con:call></con:operation><con:operation id="1307ac1e-170e-4e09-84ea-b8cbcb3cd9ff" isOneWay="false" action="http://localhost:5000/getEventById" name="getEventById" bindingOperationName="getEventById" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d9412203-bbd0-402f-b379-d7c9c4e58dd1" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:5000/event-calendar-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:idElement>60ad8d596c7362001cc51d64</tem:idElement>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://localhost:5000/getEventById"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="f6942dee-a2f7-455c-a44e-829ee178652d" isOneWay="false" action="http://localhost:5000/getEventRegistrations" name="getEventRegistrations" bindingOperationName="getEventRegistrations" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="1d161541-87c4-4498-8bd5-0668d0d623ec" name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:5000/event-calendar-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:eventIdElement>?</tem:eventIdElement>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://localhost:5000/getEventRegistrations"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="f9c088e5-9dd5-4a0d-96c8-e634993c051f" isOneWay="false" action="http://localhost:5000/getEvents" name="getEvents" bindingOperationName="getEvents" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="35ae3f0e-3473-4ba4-938e-2fc43f668833" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:5000/event-calendar-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:empty/>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://localhost:5000/getEvents"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="bf5daa47-1a73-4600-800c-15c1079de8ec" isOneWay="false" action="http://localhost:5000/getRegistration" name="getRegistration" bindingOperationName="getRegistration" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="d0c751a8-3c86-49c8-b761-5ef1d471fa0a" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:5000/event-calendar-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:regId>60ad8fc9e5e469001c024d53</tem:regId>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://localhost:5000/getRegistration"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation id="ae7aab3e-e022-42e7-8db5-8afca7909a0c" isOneWay="false" action="http://localhost:5000/deleteRegistration" name="deleteRegistration" bindingOperationName="deleteRegistration" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="9f78acfa-a6f5-4680-8eab-921716177368" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:5000/event-calendar-service</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:tem="http://tempuri.org/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <tem:deleteRegId>60ad8fc9e5e469001c024d53</tem:deleteRegId>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://localhost:5000/deleteRegistration"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
