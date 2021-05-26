@@ -12,12 +12,15 @@ services:
   mongo:
     image: mongo
     restart: always
+    environment: 
+      MONGO_INITDB_DATABASE: event-calendar-api-db
     ports:
       - '27017:27017'
     networks:
       - local
     volumes:
       - mongo-data:/data/db
+      - ./mongo/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
   
   mongo-express:
     image: mongo-express
